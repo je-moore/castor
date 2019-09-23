@@ -1,5 +1,5 @@
 import React from "react"
-import styled from 'styled-components'
+import styled from "styled-components"
 import GlasgowComaScore from "./GlasgowComaScore"
 import logo from "../../assets/castor-nest.svg"
 

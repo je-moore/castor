@@ -1,5 +1,5 @@
 import React from "react"
-import styled from 'styled-components'
+import styled from "styled-components"
 import RadioFieldset from "./GlasgowComaScaleRadioFieldset"
 import formValues from "../../data/formValues.js"
 
