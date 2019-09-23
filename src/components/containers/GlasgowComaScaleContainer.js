@@ -1,5 +1,5 @@
 import React, { PureComponent } from "react"
-import styled from 'styled-components'
+import styled from "styled-components"
 import GlasgowComaScaleForm from "../views/GlasgowComaScaleForm"
 import GlasgowComaScaleHeader from "../views/GlasgowComaScaleHeader"
 
@@ -75,7 +75,9 @@ class GlasgowComaScaleContainer extends PureComponent {
 }
 
 const GcsWrapper = styled.div`
-    padding: 0 0 1.5rem;
+  padding: 0 0 1.5rem;
+  font-family: 'Lato', sans-serif;
+  color: #1b2c4b;
 `
 
 export default GlasgowComaScaleContainer
