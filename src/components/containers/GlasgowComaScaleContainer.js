@@ -1,4 +1,5 @@
 import React, { PureComponent } from "react"
+import styled from 'styled-components'
 import GlasgowComaScaleForm from "../views/GlasgowComaScaleForm"
 import GlasgowComaScaleHeader from "../views/GlasgowComaScaleHeader"
 
@@ -42,13 +43,17 @@ class GlasgowComaScaleContainer extends PureComponent {
       this.state.motorResponse >= 0
     ) {
       this.setState({ submitted: true })
-      this.calculateGlasgowComaScore(this.state.eyeResponse, this.state.verbalResponse, this.state.motorResponse)
+      this.calculateGlasgowComaScore(
+        this.state.eyeResponse,
+        this.state.verbalResponse,
+        this.state.motorResponse
+      )
     }
   }
 
   render() {
     return (
-      <div className="glasgow-coma-score-wrapper">
+      <GcsWrapper>
 
         <GlasgowComaScaleHeader
           glasgowComaScore={this.state.glasgowComaScore} />
@@ -63,10 +68,14 @@ class GlasgowComaScaleContainer extends PureComponent {
           motorResponse={this.state.motorResponse}
           submitted={this.state.submitted} />
 
-      </div>
+      </GcsWrapper>
     )
   }
 
 }
+
+const GcsWrapper = styled.div`
+    padding: 0 0 1.5rem;
+`
 
 export default GlasgowComaScaleContainer
