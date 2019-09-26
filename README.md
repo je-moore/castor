@@ -1,7 +1,5 @@
 A React web app that allows a first respondent to answer a series of questions and returns the final score.
 
-Designed to iPhone 6/7/8 screen dimensions using barebones React.
-
 ## Structure
 
 <pre>

@@ -13,18 +13,17 @@ function GlasgowComaScaleContainer(props) {
 
   const handleSubmit = e => {
     e.preventDefault()
-    if (
-      props.eyeResponse >= 0 &&
-      props.verbalResponse >= 0 &&
-      props.motorResponse >= 0
-    ) {
-      props.submitForm(
-        props.eyeResponse, 
-        props.verbalResponse, 
-        props.motorResponse
-      )
+    const responseValues = Object.values(props.responses)
+    if (isFilledOut(responseValues)) {
+      props.submitForm(responseValues)
     }
   }
+
+  const isFilledOut = values => values.reduce(
+    (isFilled, element) => {
+      return isFilled && element >= 0
+    }, true)
+
 
   return (
     <GcsWrapper>
@@ -35,9 +34,7 @@ function GlasgowComaScaleContainer(props) {
       <GlasgowComaScaleForm
         handleChange={handleChange}
         handleSubmit={handleSubmit}
-        eyeResponse={props.eyeResponse}
-        verbalResponse={props.verbalResponse}
-        motorResponse={props.motorResponse}
+        responses={props.responses}
         submitted={props.submitted} />
 
     </GcsWrapper>
@@ -46,10 +43,8 @@ function GlasgowComaScaleContainer(props) {
 
 const mapStateToProps = state => ({
   glasgowComaScore: state.glasgowComaScore,
-  eyeResponse: state.eyeResponse,
-  verbalResponse: state.verbalResponse,
-  motorResponse: state.motorResponse,
-  submitted: state.submitted
+  submitted: state.submitted,
+  responses: state.responses
 })
 
 const mapDispatchToProps = dispatch => ({

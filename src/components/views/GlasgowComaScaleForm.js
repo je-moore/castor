@@ -10,7 +10,7 @@ export default function GlasgowComaScaleForm(props) {
         <RadioFieldset
           fieldsetName={key}
           fieldsetValues={formValues[key]}
-          selectedValue={props[key]}
+          selectedValue={props.responses[key]}
           handleChange={props.handleChange}
           key={key} /> ) }
       <div>

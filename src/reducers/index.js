@@ -1,11 +1,13 @@
 import { SET_VALUE, SUBMIT_FORM } from '../actions'
 
 const initialState = {
-  glasgowComaScore: "",
-  eyeResponse: -1,
-  verbalResponse: -1,
-  motorResponse: -1,
-  submitted: false
+  glasgowComaScore: null,
+  submitted: false,
+  responses: {
+    eyeResponse: -1,
+    verbalResponse: -1,
+    motorResponse: -1
+  }
 }
 
 const reducer = (state = initialState, action) => {
@@ -13,7 +15,11 @@ const reducer = (state = initialState, action) => {
     case SET_VALUE:
       const { name, value } = action.payload
       return {
-        ...state, [name]: Number(value)
+        ...state,
+        responses: {
+          ...state.responses,
+          [name]: Number(value)
+        }
       }
     case SUBMIT_FORM:
       return !state.submitted ? {

@@ -8,9 +8,10 @@ export function setValue(name, value) {
   }
 }
 
-export function submitForm(eyeResponse, verbalResponse, motorResponse) {
+export function submitForm(args) {
+  console.log(args)
   return { 
     type: SUBMIT_FORM,
-    payload: eyeResponse + verbalResponse + motorResponse
+    payload: args.reduce((a,b) => a + b, 0)
   }
 }
