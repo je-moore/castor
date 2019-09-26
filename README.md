@@ -4,6 +4,8 @@ Designed to iPhone 6/7/8 screen dimensions using barebones React.
 
 ## Structure
 
+<pre>
+
 Container
 │
 ├╴Header  ┈┈┈┈(src/assets/castor-nest.svg)
@@ -19,6 +21,7 @@ Container
 •Form values placed src/data/formValues.js
 •Logo placed src/assets/castor-nest.svg
 
+</pre>
 
 ––––––––––––––––––––
 
