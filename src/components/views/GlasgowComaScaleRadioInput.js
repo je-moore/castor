@@ -13,7 +13,7 @@ export default function RadioInput(props) {
         checked={props.selectedValue === props.inputScore}
         onChange={props.handleChange} />
 
-      <GcsLabel for={props.fieldsetName+props.inputScore}>
+      <GcsLabel htmlFor={props.fieldsetName+props.inputScore}>
         {props.inputValue}
       </GcsLabel>
 

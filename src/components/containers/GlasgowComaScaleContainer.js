@@ -1,83 +1,67 @@
-import React, { PureComponent } from "react"
+import React from "react"
 import styled from "styled-components"
+import { connect } from "react-redux"
+import { setValue, submitForm } from "../../actions"
 import GlasgowComaScaleForm from "../views/GlasgowComaScaleForm"
 import GlasgowComaScaleHeader from "../views/GlasgowComaScaleHeader"
 
-class GlasgowComaScaleContainer extends PureComponent {
+function GlasgowComaScaleContainer(props) {
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      glasgowComaScore: "",
-      eyeResponse: -1,
-      verbalResponse: -1,
-      motorResponse: -1,
-      submitted: false
-    }
+  const handleChange = e => {
+    props.setValue(e.target.name, e.target.value)
   }
 
-  calculateGlasgowComaScore = (eyeResponse, verbalResponse, motorResponse) => {
-    this.setState({
-      glasgowComaScore: eyeResponse + verbalResponse + motorResponse
-    })
-  }
-
-  handleChange = e => {
-    this.setState({ [e.target.name]: Number(e.target.value) })
-  }
-
-  handleSubmit = e => {
+  const handleSubmit = e => {
     e.preventDefault()
-    if (this.state.submitted) {
-      this.setState({
-        glasgowComaScore: "",
-        eyeResponse: -1,
-        verbalResponse: -1,
-        motorResponse: -1,
-        submitted: false
-      })
-    }
-    else if (
-      this.state.eyeResponse >= 0 &&
-      this.state.verbalResponse >= 0 &&
-      this.state.motorResponse >= 0
+    if (
+      props.eyeResponse >= 0 &&
+      props.verbalResponse >= 0 &&
+      props.motorResponse >= 0
     ) {
-      this.setState({ submitted: true })
-      this.calculateGlasgowComaScore(
-        this.state.eyeResponse,
-        this.state.verbalResponse,
-        this.state.motorResponse
+      props.submitForm(
+        props.eyeResponse, 
+        props.verbalResponse, 
+        props.motorResponse
       )
     }
   }
 
-  render() {
-    return (
-      <GcsWrapper>
+  return (
+    <GcsWrapper>
 
-        <GlasgowComaScaleHeader
-          glasgowComaScore={this.state.glasgowComaScore} />
+      <GlasgowComaScaleHeader
+        glasgowComaScore={props.glasgowComaScore} />
 
-        <GlasgowComaScaleForm
-          handleChange={this.handleChange}
-          handleSubmit={this.handleSubmit}          
-          calculateGlasgowComaScore={this.calculateGlasgowComaScore}
-          glasgowComaScore={this.state.glasgowComaScore}
-          eyeResponse={this.state.eyeResponse}
-          verbalResponse={this.state.verbalResponse}
-          motorResponse={this.state.motorResponse}
-          submitted={this.state.submitted} />
+      <GlasgowComaScaleForm
+        handleChange={handleChange}
+        handleSubmit={handleSubmit}
+        eyeResponse={props.eyeResponse}
+        verbalResponse={props.verbalResponse}
+        motorResponse={props.motorResponse}
+        submitted={props.submitted} />
 
-      </GcsWrapper>
-    )
-  }
-
+    </GcsWrapper>
+  )
 }
+
+const mapStateToProps = state => ({
+  glasgowComaScore: state.glasgowComaScore,
+  eyeResponse: state.eyeResponse,
+  verbalResponse: state.verbalResponse,
+  motorResponse: state.motorResponse,
+  submitted: state.submitted
+})
+
+const mapDispatchToProps = dispatch => ({
+  setValue: (name, value) => dispatch(setValue(name, value)),
+  submitForm: (eyeResponse, verbalResponse, motorResponse) => dispatch(submitForm(eyeResponse, verbalResponse, motorResponse))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(GlasgowComaScaleContainer)
+
 
 const GcsWrapper = styled.div`
   padding: 0 0 1.5rem;
   font-family: 'Lato', sans-serif;
   color: #1b2c4b;
 `
-
-export default GlasgowComaScaleContainer
