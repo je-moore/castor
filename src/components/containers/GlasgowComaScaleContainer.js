@@ -43,13 +43,12 @@ function GlasgowComaScaleContainer(props) {
 
 const mapStateToProps = state => ({
   glasgowComaScore: state.glasgowComaScore,
-  submitted: state.submitted,
   responses: state.responses
 })
 
 const mapDispatchToProps = dispatch => ({
   setValue: (name, value) => dispatch(setValue(name, value)),
-  submitForm: (eyeResponse, verbalResponse, motorResponse) => dispatch(submitForm(eyeResponse, verbalResponse, motorResponse))
+  submitForm: (responseValues) => dispatch(submitForm(responseValues))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(GlasgowComaScaleContainer)

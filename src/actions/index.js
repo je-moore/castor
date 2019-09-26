@@ -9,7 +9,6 @@ export function setValue(name, value) {
 }
 
 export function submitForm(args) {
-  console.log(args)
   return { 
     type: SUBMIT_FORM,
     payload: args.reduce((a,b) => a + b, 0)

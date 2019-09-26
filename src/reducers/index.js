@@ -2,7 +2,6 @@ import { SET_VALUE, SUBMIT_FORM } from '../actions'
 
 const initialState = {
   glasgowComaScore: null,
-  submitted: false,
   responses: {
     eyeResponse: -1,
     verbalResponse: -1,
@@ -22,10 +21,10 @@ const reducer = (state = initialState, action) => {
         }
       }
     case SUBMIT_FORM:
-      return !state.submitted ? {
+      console.log(state, action.payload)
+      return !state.glasgowComaScore ? {
         ...state,
         glasgowComaScore: action.payload,
-        submitted: true        
       } : initialState
     default:
       return state
