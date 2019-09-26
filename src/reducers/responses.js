@@ -1,4 +1,4 @@
-import { SET_VALUE } from '../actions'
+import { SET_VALUE } from "../actions"
 
 const initialResponses = {
   eyeResponse: -1,

@@ -1,4 +1,4 @@
-import { SUBMIT_FORM } from '../actions'
+import { SUBMIT_FORM } from "../actions"
 
 export const glasgowComaScore = (state = null, action) => {
   console.log(state, action.payload, action.type)

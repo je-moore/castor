@@ -1,4 +1,4 @@
-import { SET_VALUE, SUBMIT_FORM } from '../actions'
+import { SET_VALUE, SUBMIT_FORM } from "../actions"
 
 const initialState = {
   glasgowComaScore: null,
@@ -21,7 +21,6 @@ const reducer = (state = initialState, action) => {
         }
       }
     case SUBMIT_FORM:
-      console.log(state, action.payload)
       return !state.glasgowComaScore ? {
         ...state,
         glasgowComaScore: action.payload,
